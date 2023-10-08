@@ -1,0 +1,18 @@
+{
+  "name": "ecommercestore",
+  "version": "1.0.0",
+  "description": "Making User cart and Discount Segment For Ecommerce",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "E-Commerce Store"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
