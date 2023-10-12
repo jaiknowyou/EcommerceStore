@@ -8,6 +8,10 @@ class Cart{
         else this.items[id] = quantity
     }
 
+    removeItemFromCart = function(id, quantity){
+        if(this.items.id) this.items.id = min(this.items.id - quantity, 0)
+    }
+
     getCartDetails = function(Inventory){
         let res = {}
     }
@@ -20,7 +24,7 @@ class Cart{
                 try{
                     for(let key in this.items){
                         res[id] = Inventory.searchProduct(id)
-                        await Inventory.addOrRemoveProduct(key, this.items[key])
+                        await Inventory.updateProductInventory(key, -this.items[key])
                         total += res[id].price * this.items[key]
                     }
                 }catch(e){

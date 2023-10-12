@@ -30,16 +30,19 @@ class Inventory{
         if(this.mapping.has(name)) return this.products[this.mapping.get(name)]
     }
 
-    insertProduct = function(name, description, price){
+    insertProduct = function(name, description, price, quantity, category = null){
         if(this.mapping.has(name)) return `The Product with the name already exists. Please choose a unique product name.`
         let id = this.products.length
-        let product = Product(id, name, description, price)
+        let product = Product(name, description, price, category)
         this.mapping.set(name, id)
         this.products.push(product)
+        this.quantity.push(quantity)
     }
 
     searchProductByCategory = function(){
-
+        console.log("This Functionality can be added.")
     }
 
 }
+
+module.exports = Inventory

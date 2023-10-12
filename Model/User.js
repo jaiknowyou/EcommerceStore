@@ -1,13 +1,13 @@
 class User{
-    constructor(id, name, contact){
-        this.id = id
-        this.name = name
-        this.contact = contact
+    constructor(username){
+        // this.id = id
+        this.name = username
+        // this.contact = contact
         this.cart = Cart()
         this.orders = []
     }
 
-    checkout = async function(Inventory){
+    checkOut = async function(Inventory){
         try{
             let discount = false
             if(this.orders.length + 1 == DISCOUNT_ON_N_ORDERS) discount = true
@@ -19,3 +19,5 @@ class User{
         }
     }
 }
+
+module.exports = User
