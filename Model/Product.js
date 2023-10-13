@@ -8,8 +8,8 @@ class Product{
         this.categoryId = category
     }
 
-    updateCategory = function(id){
-        this.categoryId = id
+    detail = ()=>{
+        return `The Product ${this.name} having cost ${this.price}`
     }
 
 }

@@ -20,3 +20,7 @@ Steps:
 
 TestCases:
 <!--  -->
+1. Multiple Users buying same Items concurrently.
+2. Invalid Product Id is Passed.
+3. Removing Invalid Item From Cart wouldn't have any impact on Cart.
+4. If quantity is more than present in Inventory, Item cannot be added to Cart.

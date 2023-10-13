@@ -8,15 +8,20 @@ class Inventory{
         // Use Map for large data keeping quantity and product details
         // RDBMS for searching and filtering
         this.quantity = []
-        this.lock = [] // locking specific product while change in inventory of that product
         this.location = location
     }
 
+    checkInventory = async(key, value)=>{
+        if(key >= this.products.length) return "This Product is Not in Inventory"
+        if(this.quantity[key] < value) return `Only ${this.quantity[key]} of product ${this.products[key].name} is available.`
+    }
+
     updateProductInventory = function(id, quantity){
-        new Promise((resolve, reject)=>{
+        return new Promise((resolve, reject)=>{
             try{
+                if(id >= this.products.length) return reject("This Product is not found in Inventory")
                 if(quantity < 0 && -quantity > this.quantity[id]) return reject(`Only ${this.quantity[id]} of product ${this.products[id].name} is available.`)
-                this.quantity += quantity
+                this.quantity[id] += quantity
                 resolve()
             }catch(e){
                 console.log(e)
@@ -33,14 +38,27 @@ class Inventory{
     insertProduct = function(name, description, price, quantity, category = null){
         if(this.mapping.has(name)) return `The Product with the name already exists. Please choose a unique product name.`
         let id = this.products.length
-        let product = Product(name, description, price, category)
+        let product = new Product(name, description, price, category)
         this.mapping.set(name, id)
         this.products.push(product)
         this.quantity.push(quantity)
     }
 
-    searchProductByCategory = function(){
-        console.log("This Functionality can be added.")
+    searchProductByCategory = function(id){
+        return this.products.filter((val) => val.categoryId == id)
+    }
+    
+    productDescriptionByCategory = function(){
+        let result = ``
+        for(let key in CATEGORY ){
+            result += `${key}:\n`
+            let products = this.searchProductByCategory(CATEGORY[key])
+            for(let product of products){
+                let id = this.mapping.get(product.name)
+                result += `${product.detail()} with product id ${id} and availability of ${this.quantity[id]}\n`
+            }
+        }
+        return result
     }
 
 }
